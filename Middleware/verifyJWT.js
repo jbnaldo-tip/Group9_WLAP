@@ -4,7 +4,7 @@ const JWT =require('jsonwebtoken');
 
 const verifyJWT = (res, req, next) => {
     
-    const authHeader =req.headers.authorization || req.headers.authorization;
+    const authHeader = req.headers.authorization || req.headers.authorization;
 
 
 
@@ -20,7 +20,7 @@ const verifyJWT = (res, req, next) => {
 
     //verify token
 
-    JWT.verify(token, process.env.ACCESS_TOKEN_SECRET, {
+    JWT.verify(token, process.env.ACCESS_TOKEN_KEY, {
 
         algorithm: "HSA256"
 

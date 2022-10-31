@@ -18,11 +18,11 @@ const AdminDB ={
     
     //import file of user data. json
 
-    Prof: require ('../Models/Administrator.json'),
+    Admin: require ('../Models/Administrator.json'),
 
     //set to call data from folder name 
 
-    setProf: function(data){this.Admin = data}
+    setAdmin: function(data){this.Admin = data}
 
 }
 
@@ -37,18 +37,25 @@ const HandleLoginControl  = async(req, res) =>{
 
     // verify input credentials of the admin/user to login
 
-    if (!Username || !Password) return res.status(400).json({message:"Invalid Username or Password."});
+    if (!Username || !Password) return res.status(400).json({message: "Invalid Username or Password."});
 
 
     // create a function if Admin exist in the database
 
     const foundAdmin = AdminDB.Admin.find((u) => u.Username == Username);
 
+
     // if Admin = true but no authorization
+
+    if (!foundAdmin) return res.sendStatus(401);
+
+
+
+    // if user = true and pass = true, give token to admin to allow authorization
 
     const match = bcrypt.compare(Password, foundAdmin.Password);
 
-    // if user = true and pass = true, give token to admin to allow authorization
+
     
     if (match){
 
@@ -64,7 +71,7 @@ const HandleLoginControl  = async(req, res) =>{
 
             // create an inscribed token to allow user to access
 
-            const accessToken = JWT.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+            const accessToken = JWT.sign(payload, process.env.ACCESS_TOKEN_KEY, {
                 
                 //encrypt
                 algorithm: "HS256",
@@ -74,7 +81,7 @@ const HandleLoginControl  = async(req, res) =>{
 
             // refresh the token after it expires for 1 min
 
-            const refresherToken = JWT.sign(payload, porcess.env.REFRESH_TOKEN_SECRET,{
+            const refresherToken = JWT.sign(payload, process.env.REFRESHER_TOKEN_KEY,{
 
                 //encrypt
                 algorithm: "HS256",
@@ -84,10 +91,10 @@ const HandleLoginControl  = async(req, res) =>{
             // add refresherToken to Admin or User
             
             const foundAdminWithToken = {...foundAdmin, refresherToken: refresherToken};
-
+            
             const filteredAdmin = AdminDB.Admin.filter((u) => u.Username !== Username);
 
-            AdminDB.setADdmin([...filteredAdmin, foundAdminWithToken]);
+            AdminDB.setAdmin([...filteredAdmin, foundAdminWithToken]);
 
             await fsPromises.writeFile(
 

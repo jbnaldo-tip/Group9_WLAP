@@ -39,11 +39,11 @@ const HandleRegisterController  = async(req, res) => {
     
     //Verify if admin exist within the database
 
-    const foundAdmin = AdminDb.Admin.find((u)=> u.Username == Username);
+    const foundAdmin = AdminDB.Admin.find((u)=> u.Username == Username);
 
     // If admin exist in database, prompt an error message/banners
 
-    if(foundAdmin) return res.status(400). json({message: "This User $(Username) is Already taken!"});
+    if(foundAdmin) return res.status(400). json({message: `This User ${Username} is Already taken!`});
     // if admin not exist within the database,
     // prompt to register
 
@@ -67,14 +67,17 @@ const HandleRegisterController  = async(req, res) => {
 
     try{
 
-        await fsPromises.writeFile(path.join(__dirname, '..','Models','Admin.json'), JSON.stringify(AdminDB, Admin));
-        res.json({message: "Your Registration is successful! You're now registered!"})
-    }catch(err) {
+        await fsPromises.writeFile(path.join(__dirname, '..','Models','Administrator.json'), JSON.stringify(AdminDB.Admin));
+        res.json({message: "Your Registration is successful! You're now registered!"});
+    } catch(err) {
             console.error(err)
-            res.sendstatus(500);
+            res.sendStatus(500);
 
         }
     }
+
+
+module.exports = {HandleRegisterController}
 
 
 

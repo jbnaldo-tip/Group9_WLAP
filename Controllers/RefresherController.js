@@ -8,10 +8,10 @@ const JWT = require('jsonwebtoken');
 const AdminDB = {
 
     // same thing in RegisterController.js, import the user data.json
-    Admin: require ('.../Models/Administrator.json'),
+    Admin: require ('../Models/Administrator.json'),
 
     // same in the RegisterController.js
-    setAdmin: function(data){this.Prof = data}
+    setAdmin: function(data){this.Admin = data}
 
 
     
@@ -40,7 +40,7 @@ const HandleRefresherToken = (req,res ) => {
     // console log, Admin found
     if(!foundAdmin) return res.sendStatus(403);
 
-    JWT.verify(refresherToken, process.env.REFERESHER_TOKEN_SECRET, {
+    JWT.verify(refresherToken, process.env.REFRESHER_TOKEN_KEY, {
         algorithms: "HS256"
 
 
@@ -53,7 +53,7 @@ const HandleRefresherToken = (req,res ) => {
         
         };
 
-        const accessToken = JWT.sign(payload, process.env.ACCESS_TOKEN_SECRET ,{
+        const accessToken = JWT.sign(payload, process.env.ACCESS_TOKEN_KEY,{
             algorithm: "HS256",
             expiresIn: "60s"
 
