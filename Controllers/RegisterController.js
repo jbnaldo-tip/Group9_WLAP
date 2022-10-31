@@ -41,7 +41,7 @@ const HandleRegisterController  = async(req, res) => {
 
     const foundAdmin = AdminDb.Admin.find((u)=> u.Username == Username);
 
-    // If admin exist in database, prompt an error message/banner
+    // If admin exist in database, prompt an error message/banners
 
     if(foundAdmin) return res.status(400). json({message: "This User $(Username) is Already taken!"});
     // if admin not exist within the database,
