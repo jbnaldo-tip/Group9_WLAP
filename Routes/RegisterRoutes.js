@@ -1,3 +1,5 @@
+// Start of RegisterRoutes.js
+
 //Use function router to import express and function Router
 const router = require('express').Router();
 
@@ -11,3 +13,5 @@ router.route('/')
 
 //Export as objects lahat ng laman neto kase JSON file yung tinatawag neto "Line 7"
 module.exports = router;
+
+// End of RegisterRoutes.js

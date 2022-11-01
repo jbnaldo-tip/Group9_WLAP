@@ -1,3 +1,5 @@
+// Start of RegisterController.js
+
 // note use const to create instance of the class
 
 
@@ -76,6 +78,8 @@ const HandleRegisterController  = async(req, res) => {
         }
     }
 
+
+// End of RegisterController.js
 
 module.exports = {HandleRegisterController}
 

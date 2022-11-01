@@ -1,3 +1,5 @@
+// Start of RefresherController.js
+
 // import the jsonwebtoken using JWT variable
 
 const JWT = require('jsonwebtoken');
@@ -64,6 +66,9 @@ const HandleRefresherToken = (req,res ) => {
     })
 
 }
+
+
+// End of RefresherController.js
 
 module.exports = {HandleRefresherToken}
   

@@ -1,4 +1,4 @@
-//verify 
+// Start of verifyJWT.js
 
 const JWT =require('jsonwebtoken');
 
@@ -38,5 +38,7 @@ const verifyJWT = (res, req, next) => {
 
 }
 
+
+// End of verifyJWT.js
 
 module.exports = {verifyJWT}

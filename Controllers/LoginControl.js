@@ -1,4 +1,4 @@
-// Login
+// Start of LoginControl.js
 
 
 const fsPromises = require ('fs').promises;
@@ -10,7 +10,7 @@ const path = require ('path');
 const JWT = require ('jsonwebtoken');
 
 
-// End Login
+
 
 // Create variable administrator DB
 
@@ -122,6 +122,7 @@ const HandleLoginControl  = async(req, res) =>{
     
 }
 
+// End of LoginControl.js
 
 module.exports = {HandleLoginControl}
 

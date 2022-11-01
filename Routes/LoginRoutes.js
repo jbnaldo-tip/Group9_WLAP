@@ -1,4 +1,6 @@
-//Use function router to import express and function Router
+// Start of LoginRoutes.js
+
+//create a function that will import express 
 const router = require('express').Router();
 
 const {HandleLoginControl} = require('../Controllers/LoginControl.js');
@@ -11,3 +13,5 @@ router.route('/')
 
 //Export as objects lahat ng laman neto kase JSON file yung tinatawag neto "Line 7"
 module.exports = router;
+
+// End of LoginRoutes
