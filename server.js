@@ -45,11 +45,12 @@ app.use(cookieParser())
 
 
 // function app para ilagay ito sa URL"Directory", Calling Routes
-app.use('/api/data/Register', require('./Routes/RegisterRoutes.js'));
-app.use('/api/data/Login',require('./Routes/LoginRoutes.js'));
-app.use('/api/data/Refresh',require('./Routes/RefresherRoutes.js'));
-app.use('/api/data/Logout',require('./Routes/LogoutRoutes.js'));
-app.use('/api/data/Delete', require('./Routes/API/DeleteAdminRoutes.js'));
+app.use('/api/data/register', require('./Routes/RegisterRoutes.js'));
+app.use('/api/data/login',require('./Routes/LoginRoutes.js'));
+app.use('/api/data/refresh',require('./Routes/RefresherRoutes.js'));
+app.use('/api/data/logout',require('./Routes/LogoutRoutes.js'));
+app.use('/api/data/delete', require('./Routes/API/DeleteAdminRoutes.js'));
+app.use('/api/data/get', require('./Routes/API/GetAdminRoutes.js'));
 // gawa ng routes for deleting user! Do not forget! -Denzell
 
 
