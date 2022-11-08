@@ -22,8 +22,8 @@ const path = require('path')
 
 //set variable of enviornment port to (PORT) and environment (PORT) set to localhost 5050
 const PORT = process.env.PORT || 5050;
-
 //End import
+
 
 
 
@@ -39,16 +39,18 @@ app.use(express.static(path.join(__dirname,'Public')));
 app.use(cookieParser())
 
 
-//end app
+// end app
 
 
 
 
-//function app para ilagay ito sa URL"Directory", Calling Routes
+// function app para ilagay ito sa URL"Directory", Calling Routes
 app.use('/api/data/Register', require('./Routes/RegisterRoutes.js'));
 app.use('/api/data/Login',require('./Routes/LoginRoutes.js'));
 app.use('/api/data/Refresh',require('./Routes/RefresherRoutes.js'));
-//app.use('api/data/Logout', require('./Routes/LogoutRoutes.js'));
+app.use('/api/data/Logout',require('./Routes/LogoutRoutes.js'));
+app.use('/api/data/Delete', require('./Routes/API/DeleteAdminRoutes.js'));
+// gawa ng routes for deleting user! Do not forget! -Denzell
 
 
 

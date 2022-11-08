@@ -28,16 +28,18 @@ const AdminDB ={
 // Create HandleRegisterControl function variable for it to 
 // asynchronus e.g (req or request ; res or respond)
 
-const HandleRegisterController  = async(req, res) => {
+const HandleRegisterControl  = async(req, res) => {
 
     // import the json data user and password, req.body
 
     const{Username, Password} = req.body;
+    const{Firstname, Surname} = req.body;
 
 
     //Verify if input credentials is finished
 
     if(!Username || !Password) return res.status(400).json({message: "Invalid Username or Password."});
+    if(!Firstname || !Surname) return res.status(400).json({message: "Please Enter your Username and Surname"});
     
     //Verify if admin exist within the database
 
@@ -51,7 +53,9 @@ const HandleRegisterController  = async(req, res) => {
 
     const newAdmin = {
         Username: Username,
-        Password: Password
+        Password: Password,
+        Surname: Surname,
+        Firstname: Firstname,
 
         
     } 
@@ -81,7 +85,7 @@ const HandleRegisterController  = async(req, res) => {
 
 // End of RegisterController.js
 
-module.exports = {HandleRegisterController}
+module.exports = {HandleRegisterControl}
 
 
 

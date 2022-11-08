@@ -3,15 +3,11 @@
 
 // create a function that will import expresss
 const router = require('express').Router();
-
 const e = require('express');
-
-const {HandleRefresherToken} = require('../Controllers/RefresherController.js');
+const {HandleRefresherToken} = require('../Controllers/RefresherControl.js');
 
 
 router.route('/')
-
-
     .post(HandleRefresherToken);
 
 // export as objects 

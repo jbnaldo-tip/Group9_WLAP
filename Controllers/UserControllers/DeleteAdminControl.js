@@ -1,15 +1,13 @@
 // Start of DeleteAdminControl.js
 
 const fsPromises = require('fs').promises;
-
 const path = require('path');
 
 //// Create variable administrator DB, the usual stuffs
 
 const AdminDB = {
 
-    Admin: require ('../Models/Administrator.json'),
-
+    Admin: require ('../../Models/Administrator.json'),
     setAdmin: function(data){this.Admin = data}
 
 }
@@ -19,24 +17,27 @@ const HandleDeleteAdminControl = async (req, res) => {
     // the Administrator has the power to do it all basically...
 
     //import json data
-
-    const {id, Username} = req.body
+    const {Username, Password} = req.body
 
 
     // verify if the credentials is complete
-    if(!id  || !Username) return res.status(400).json({message:"Username credential is empty! Please input your username!"});
+    if(!Username  || !Password) return res.status(400).json({message:"Empty input credential is not accepted! Please try again!"});
+    
 
     // if the admin does exist;
-    const foundAdmin = AdminDB.Admin.find((u) => u.id == id);
+    const foundAdmin = AdminDB.Admin.find((u) => u.Password == Password);
+    
+    if (!foundAdmin){
+
+        return res.status(400).json({"message":`This user does not exist in the database`});
+    }
 
     // isolate the name of the admin by filtering
-
-    const filterAdmin = AdminDB.Admin.filter((x) => x.id !== foundAdmin.id);
+    const filterAdmin = AdminDB.Admin.filter((x) => x.Password !== foundAdmin.Password);
 
 
     // call the variable object to overwrite inside the Admin database,
     // and also to add new admin
-
     AdminDB.setAdmin(filterAdmin);
 
 
@@ -45,7 +46,7 @@ const HandleDeleteAdminControl = async (req, res) => {
 
     try {
 
-        await fsPromises.writeFile(path.join(__dirname, '..','Models','Administrator.json'), JSON.stringify(AdminDB.Admin));
+        await fsPromises.writeFile(path.join(__dirname, '..','..','Models','Administrator.json'), JSON.stringify(AdminDB.Admin));
         res.json({message: `Your Username ${Username} is deleted`});
     } catch(err){
         console.error(err)
@@ -56,6 +57,6 @@ const HandleDeleteAdminControl = async (req, res) => {
 
 
 
-
-
 }
+
+module.exports = {HandleDeleteAdminControl}

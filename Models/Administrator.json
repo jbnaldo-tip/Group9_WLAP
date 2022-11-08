@@ -8,5 +8,48 @@
         "Username": "ryzen55600x",
         "Password": "radeonrx6600xt",
         "refresherToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6InJ5emVuNTU2MDB4IiwiaWF0IjoxNjY3MjQ1NDQ5LCJleHAiOjE2NjczMzE4NDl9.sjdko4ZLHwyDs-qsReKeF3geGqaqQ4OxMyl7YcfZa1o"
+    },
+    {
+        "Username": "i9-12900k",
+        "Password": "RTX3090Ti",
+        "refresherToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6Imk5LTEyOTAwayIsImlhdCI6MTY2NzMyMTkyNCwiZXhwIjoxNjY3NDA4MzI0fQ.BT5A2EbqqNLNYwDRpNTd-w5yPkuCWAXfYHwMjV7Xw7k"
+    },
+    {
+        "Username": "user1",
+        "Password": "password1",
+        "refresherToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNjY3MzI2MjI0LCJleHAiOjE2Njc0MTI2MjR9.X8iAPpbGxqwBGeJCQCHlFfzQu4EI701SrxAxyZc2DUc",
+        "referesherToken": " "
+    },
+    {
+        "Username": "naldongputik",
+        "Password": "spigerby",
+        "refresherToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6Im5hbGRvbmdwdXRpayIsImlhdCI6MTY2NzMyNjY3NiwiZXhwIjoxNjY3NDEzMDc2fQ.QT_6iEcX_xXMQQAXXK36Ey-IbML-yAzDW-ZVxBYLxho",
+        "referesherToken": " "
+    },
+    {
+        "Username": "agapewpew",
+        "Password": "123",
+        "refresherToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6ImFnYXBld3BldyIsImlhdCI6MTY2NzMyNzQyNiwiZXhwIjoxNjY3NDEzODI2fQ.xcMJEmtP_3PqAWAXnqirxBMyDf1nb8FaVjs7d87Kw9Q",
+        "referesherToken": " "
+    },
+    {
+        "Username": "123123",
+        "Password": "weee",
+        "refresherToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6IjEyMzEyMyIsImlhdCI6MTY2NzMyNzU2OSwiZXhwIjoxNjY3NDEzOTY5fQ.JKnICJ_Kx1-UX3Oy3uQBv3iuHTjGdYGTZRv22Dv9Fao",
+        "referesherToken": " "
+    },
+    {
+        "Username": "user2",
+        "Password": "pass2",
+        "Lastname": "last2",
+        "Firstname": "first2",
+        "refresherToken": " "
+    },
+    {
+        "Username": "username1",
+        "Password": "password1",
+        "Lastname": "gil",
+        "Firstname": "denzell",
+        "refresherToken": " "
     }
 ]

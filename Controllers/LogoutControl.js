@@ -2,7 +2,7 @@
 
 const fsPromises = require('fs').promises;
 
-const { now } = require('lodash');
+
 const path = require ('path');
 
 
@@ -17,7 +17,7 @@ const AdminDB = {
 
 
 //create variable and function to req cookies
-const HandleLogutControl = async(reg, res) =>{
+const HandleLogoutControl = async(req, res) =>{
 
 // this function is for generating cookies
   const cookies = req.cookies;
@@ -46,7 +46,7 @@ const HandleLogutControl = async(reg, res) =>{
    const diffAdmin = AdminDB.Admin.filter((u) => u.refresherToken !== refresherToken);
    
    // note now = current, hence the current admin.
-   const nowAdmin = {...foundAdminWithToken, referesherToken: ' '};
+   const nowAdmin = {...foundAdminWithToken, refresherToken: ' '};
 
    // calling the database which is the AdminDB to set the admin (setAdmin)
    // and to overwrite the content inside the database.
@@ -69,6 +69,10 @@ const HandleLogutControl = async(reg, res) =>{
 
    });
 
+   
+   res.status(200).send("Successfully Logged out!");
+
+
    res.sendStatus(204);
 
 
@@ -76,4 +80,4 @@ const HandleLogutControl = async(reg, res) =>{
 
 // End of LogoutControl.js
 
-module.exports = {HandleLogutControl}
+module.exports = {HandleLogoutControl}
