@@ -9,7 +9,7 @@ const router = express.Router();
 // create a variable to import config Roles list, verifyJWT
 // and verify roles
 
-const {verifyJWT} = require ('../../Middleware/verifyJWT')
+const {verifyJWT} = require ('../../Middleware/verifyJWT');
 const ROLES_LIST = require('../../config/Roles_list');
 const verifyRoles =  require('../../Middleware/verifyRoles');
 

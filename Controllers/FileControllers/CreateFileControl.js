@@ -14,21 +14,22 @@ const ActivityDB = {
 
 const CreateFileControl = (req, res) => {
 
-    if (!req.body.SemesterAndSchoolYear || !req.body.WeekProgression || !req.body.CourseCode || !req.body.CourseDescription ||
-        !req.body.Module || !req.body.Topic || !req.body.Section || !req.body.Schedule || !req.body.Units || !req.body.Professor) {
+    if (!req.body.SemesterAndSchoolYear ||!req.body.WeekProgression||!req.body.ActivityNumber ||!req.body.CourseCode ||!req.body.CourseDescription ||
+        !req.body.Module ||!req.body.Topic ||!req.body.Section ||!req.body.Schedule ||!req.body.Units ||!req.body.Professor) {
             return res.status(400).json({"message": 'Invalid! Please do not leave the fill up Information blank!'});
 
         }
-}
+
     const NewActivity = {
         id: ActivityDB.Activity?.length ? ActivityDB.Activity[ActivityDB.Activity.length - 1].id + 1 : 1,
-        "Semester and School Year": req.body.SemesterAndSchoolYear,
-        "Week": req.body.WeekProgression,
-        "Course Code": req.body.CourseCode,
-        "Course Description": req.body.CourseDescription,
-        "Module": req.body.Module,
+        "SemesterAndSchoolYear":req.body.SemesterAndSchoolYear,
+        "WeekProgression": req.body.WeekProgression,
+        "ActivityNumber":req.body.ActivityNumber,
+        "CourseCode":req.body.CourseCode,
+        "CourseDescription":req.body.CourseDescription,
+        "Module":req.body.Module,
         "Topic":req.body.Topic,
-        "Section": req.body.Section,
+        "Section":req.body.Section,
         "Schedule":req.body.Schedule,
         "Units":req.body.Units,
         "Professor":req.body.Professor,
@@ -38,7 +39,7 @@ const CreateFileControl = (req, res) => {
     res.json(ActivityDB.Activity);
     fsPromises.writeFile(path.join(__dirname,'..','..','Models','ActivityPlan.json'), JSON.stringify(ActivityDB.Activity));
 
-
+}
     
 module.exports = {CreateFileControl}
 

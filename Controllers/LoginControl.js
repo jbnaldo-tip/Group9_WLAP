@@ -2,26 +2,20 @@
 
 
 const fsPromises = require ('fs').promises;
-
 const bcrypt = require('bcrypt');
-
 const path = require ('path');
-
 const JWT = require ('jsonwebtoken');
 
 
 
 
 // Create variable administrator DB
-
 const AdminDB ={
     
     //import file of user data. json
-
     Admin: require ('../Models/Administrator.json'),
 
     //set to call data from folder name 
-
     setAdmin: function(data){this.Admin = data}
 
 }
@@ -32,27 +26,22 @@ const AdminDB ={
 const HandleLoginControl  = async(req, res) =>{
 
     // import json data user and pass req. body
-
     const {Username, Password} = req.body;
 
     // verify input credentials of the admin/user to login
-
     if (!Username || !Password) return res.status(400).json({message: "Invalid Username or Password."});
 
 
     // create a function if Admin exist in the database
-
     const foundAdmin = AdminDB.Admin.find((u) => u.Username == Username);
 
 
     // if Admin = true but no authorization
-
     if (!foundAdmin) return res.sendStatus(401);
 
 
 
     // if user = true and pass = true, give token to admin to allow authorization
-
     const match = bcrypt.compare(Password, foundAdmin.Password);
 
 
@@ -62,7 +51,6 @@ const HandleLoginControl  = async(req, res) =>{
         try{
 
             // Create a function to call  the username
-
             const payload = {
 
                 //call json data username
@@ -70,7 +58,6 @@ const HandleLoginControl  = async(req, res) =>{
             }
 
             // create an inscribed token to allow user to access
-
             const accessToken = JWT.sign(payload, process.env.ACCESS_TOKEN_KEY, {
                 
                 //encrypt
@@ -80,7 +67,6 @@ const HandleLoginControl  = async(req, res) =>{
             });
 
             // refresh the token after it expires for 1 min
-
             const refresherToken = JWT.sign(payload, process.env.REFRESHER_TOKEN_KEY,{
 
                 //encrypt
@@ -91,22 +77,18 @@ const HandleLoginControl  = async(req, res) =>{
             // add refresherToken to Admin or User
             
             const foundAdminWithToken = {...foundAdmin, refresherToken: refresherToken};
-            
             const filteredAdmin = AdminDB.Admin.filter((u) => u.Username !== Username);
-
             AdminDB.setAdmin([...filteredAdmin, foundAdminWithToken]);
 
             await fsPromises.writeFile(
 
                 path.join(__dirname, "..", 'Models','Administrator.json'),
-
                 JSON.stringify(AdminDB.Admin)
             )
 
             //send the refreshed or new token as cookie
             res.cookie('jwt', refresherToken, {
                 maxAge: 24 * 60 * 60 * 1000,
-
                 httpOnly: true,
             })
 

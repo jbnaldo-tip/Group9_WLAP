@@ -6,20 +6,17 @@
 // use fs for async; async is basically multitasker
 
 const fsPromises = require ('fs').promises;
-
 const path = require('path');
+const bcrypt = require('bcrypt');
 
 
 // Set variable 'database' as function variable for calling user
-
 const AdminDB ={
 
     // importing files of user data.json
-    
     Admin: require('../Models/Administrator.json'),
 
     // setUsers call data from folder name Admin.users
-    
     setAdmin: function(data){this.Admin = data}
 
 }
@@ -51,20 +48,13 @@ const HandleRegisterControl  = async(req, res) => {
     // if admin not exist within the database,
     // prompt to register
 
-    const newAdmin = {
-        Username: Username,
-        Password: Password,
-        Surname: Surname,
-        Firstname: Firstname,
-
-        
-    } 
+    
 
     // call the variable object database to overwrite 
     // inside the AdminDB.Admin, and to add
     // newAdmin
 
-    AdminDB.setAdmin([...AdminDB.Admin, newAdmin]);
+    
     
 
 
@@ -72,6 +62,24 @@ const HandleRegisterControl  = async(req, res) => {
     // will not halt
 
     try{
+
+    const encryptPassword = await bcrypt.hash (Password, 12);
+
+    const newAdmin = {
+     id: AdminDB.Admin[AdminDB.Admin.length-1].id+1 || 1,
+        Username: Username,
+        Password: encryptPassword,
+        Surname: Surname,
+        Firstname: Firstname,
+
+        
+    }; 
+
+    AdminDB.setAdmin([...AdminDB.Admin, newAdmin]);
+        // create a function that will generate a specific id and
+        // will encrypt/hash the password
+    
+
 
         await fsPromises.writeFile(path.join(__dirname, '..','Models','Administrator.json'), JSON.stringify(AdminDB.Admin));
         res.json({message: "Your Registration is successful! You're now registered!"});

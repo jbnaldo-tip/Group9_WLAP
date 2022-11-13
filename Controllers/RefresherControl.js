@@ -1,12 +1,10 @@
 // Start of RefresherController.js
 
 // import the jsonwebtoken using JWT variable
-
 const JWT = require('jsonwebtoken');
 
 
 // set variable AdminDB as func var 
-
 const AdminDB = {
 
     // same thing in RegisterController.js, import the user data.json
@@ -21,7 +19,6 @@ const AdminDB = {
 
 
 // create a function that will handle token request and response
-
 const HandleRefresherToken = (req,res ) => {
 
 
@@ -49,7 +46,6 @@ const HandleRefresherToken = (req,res ) => {
     }, (err, decoded) => {
 
         if ( err || foundAdmin.Username !== decoded.Username) return res.sendStatus(403);
-        
         const payload = {
             Username: decoded.Username
         
@@ -68,9 +64,9 @@ const HandleRefresherToken = (req,res ) => {
 }
 
 
-// End of RefresherController.js
+
 
 module.exports = {HandleRefresherToken}
   
-
+// End of RefresherController.js
 

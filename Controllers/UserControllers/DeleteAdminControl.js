@@ -25,7 +25,7 @@ const HandleDeleteAdminControl = async (req, res) => {
     
 
     // if the admin does exist;
-    const foundAdmin = AdminDB.Admin.find((u) => u.Password == Password);
+    const foundAdmin = AdminDB.Admin.find((u) => u.Username == Username);
     
     if (!foundAdmin){
 
@@ -33,7 +33,7 @@ const HandleDeleteAdminControl = async (req, res) => {
     }
 
     // isolate the name of the admin by filtering
-    const filterAdmin = AdminDB.Admin.filter((x) => x.Password !== foundAdmin.Password);
+    const filterAdmin = AdminDB.Admin.filter((x) => x.Username !== foundAdmin.Username);
 
 
     // call the variable object to overwrite inside the Admin database,

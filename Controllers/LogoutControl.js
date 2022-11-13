@@ -1,8 +1,6 @@
 // Start ofLogoutControl.js
 
 const fsPromises = require('fs').promises;
-
-
 const path = require ('path');
 
 
@@ -10,7 +8,6 @@ const path = require ('path');
 const AdminDB = {
 
     Admin: require('../Models/Administrator.json'),
-
     setAdmin: function(data){this.Admin = data}
 
 }
@@ -50,13 +47,11 @@ const HandleLogoutControl = async(req, res) =>{
 
    // calling the database which is the AdminDB to set the admin (setAdmin)
    // and to overwrite the content inside the database.
-   
    AdminDB.setAdmin([...diffAdmin, nowAdmin]);
 
    //set await to avoid bottlenecking
-
    await fsPromises.writeFile(
-       
+    
        path.join(__dirname, '..', 'Models','Administrator.json'),
        JSON.stringify(AdminDB.Admin)
    )
@@ -71,7 +66,6 @@ const HandleLogoutControl = async(req, res) =>{
 
    
    res.status(200).send("Successfully Logged out!");
-
 
    res.sendStatus(204);
 

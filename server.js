@@ -36,7 +36,7 @@ app.use(express.json());
 //function to use absolute file path
 app.use(express.static(path.join(__dirname,'Public')));
 //Function to attach cookies to client request object
-app.use(cookieParser())
+app.use(cookieParser());
 
 
 // end app
@@ -49,9 +49,15 @@ app.use('/api/data/register', require('./Routes/RegisterRoutes.js'));
 app.use('/api/data/login',require('./Routes/LoginRoutes.js'));
 app.use('/api/data/refresh',require('./Routes/RefresherRoutes.js'));
 app.use('/api/data/logout',require('./Routes/LogoutRoutes.js'));
-app.use('/api/data/delete', require('./Routes/API/DeleteAdminRoutes.js'));
-app.use('/api/data/get', require('./Routes/API/GetAdminRoutes.js'));
-// gawa ng routes for deleting user! Do not forget! -Denzell
+app.use('/api/data/deleteadmin', require('./Routes/AdminAPIRoutes/DeleteAdminRoutes.js'));
+app.use('/api/data/getadmin', require('./Routes/AdminAPIRoutes/GetAdminRoutes.js'));
+app.use('/api/data/updateadmin', require ('./Routes/AdminAPIRoutes/UpdateAdminRoutes.js'));
+app.use('/api/data/createfile', require ('./Routes/FileAPIRoutes/CreateFileRoutes.js')); 
+app.use('/api/data/getfile', require('./Routes/FileAPIRoutes/GetFileRoutes.js'));
+app.use('/api/data/updatefile', require ('./Routes/FileAPIRoutes/UpdateFileRoutes.js'));
+app.use('/api/data/deletefile', require ('./Routes/FileAPIRoutes/DeleteFileRoutes.js')); 
+
+
 
 
 
