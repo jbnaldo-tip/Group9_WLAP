@@ -1,14 +1,12 @@
 // Start of DeleteFileRoutes.js
 
 const router = require('express').Router();
-const {DeleteFileControl} = require('../../Controllers/FileControllers/DeleteFileControl');
+const {HandleDeleteFileControl} = require('../../Controllers/FileControllers/DeleteFileControl.js');
 
 router.route('/')
-    .delete(DeleteFileControl);
+    .delete(HandleDeleteFileControl);
 
 
 module.exports = router;
 
-
 // End of DeleteFileRoutes.js
-
