@@ -1,11 +1,23 @@
 // Start of LoginControl.js
 
-const Administrator = require('../Models/Administrator.js')
+
+const Administrator = require('../Models/Administrator.js');
+const {default: mongoose} = require('mongoose');
+const bcrypt = require('bcrypt');
 const path = require ('path');
 const JWT = require ('jsonwebtoken');
-const {default: mongoose} = require('mongoose');
 
 
+// Create variable administrator DB
+const AdminDB ={
+    
+    //import file of user data. json
+    Admin: require ('../Models/Administrator.json'),
+
+    //set to call data from folder name 
+    setAdmin: function(data){this.Admin = data}
+
+}
 
 // create function that will handle login control w/ request and response
 
