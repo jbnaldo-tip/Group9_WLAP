@@ -1,17 +1,27 @@
 // start of ReadFileControl.js
 
-
-const data = {};
-
 // this function will let the admin to read all the activity stored
 // in the database, if activity does not exist in data base
 // it will prompt a message that it does not exist
 
-data.Activity = require('../../Models/ActivityPlan.json');
+const data = {};
+const {default: mongoose} = require('mongoose');
+const Activity = require('../../Models/ActivityPlan.js');
 
-const GetFileControl = async (req, res) => {    
-    res.json(data.Activity);
-}
+const GetFileControl = async (req, res, next) => {
+    Activity.find()
+    .then(response => {
+        res.json({
+            response
+        })
+    })
+    .catch(error => {
+        res.json({
+            message:`An error occurred within the database`
+        })
+    })    
+ 
+};
 
 
 module.exports = {GetFileControl}

@@ -17,7 +17,6 @@ const AdminDB = {
     
 }
 
-
 // create a function that will handle token request and response
 const HandleRefresherToken = (req,res ) => {
 

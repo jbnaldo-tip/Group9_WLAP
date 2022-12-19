@@ -1,45 +1,38 @@
 // Start of DeleteFileControl.js
 
-const fsPromises = require('fs').promises;
+const {default: mongoose} = require('mongoose');
+const Activity = require('../../Models/ActivityPlan.js');
 const path = require('path');
-const { u } = require('tar');
+const { ObjectId }= require('mongodb');
 
 // create the variable admin DB, the usual stuffs
-
-const ActivityDB = {
-
-    Activity: require('../../Models/ActivityPlan.json'),
-    setActivity: function(data){this.Activity = data}
-}
-
 // This function will check for the
 // specfic activity in the database,
 // that'll be deleted.
 
 const HandleDeleteFileControl = async (req, res) => {
-
-    const {id} = req.body
-    if (!id) return res.status(400).json({"message":"Please input the ID of the activity you want to delete"});
-
-    const foundActivity = ActivityDB.Activity.find((u) => u.id == id);
-    if (!foundActivity){
-        return res.status(400).json({"message":`This Activity does not exist our database`});
-
-    }
-
-    const filterActivity = ActivityDB.Activity.filter((x) => x.id !== foundActivity.id);
-    ActivityDB.setActivity(filterActivity);
+  let ActivityID = req.body.ActivityID
 
 
-    try {
-        await fsPromises.writeFile(path.join(__dirname, '..','..','Models','ActivityPlan.json'), JSON.stringify(ActivityDB.Activity));
-        res.json({message:`Activity ${id} is deleted`});
-    } catch(err){
-        console.error(err)
-        res.sendStatus(500);
-    }
+  let deletedActivity = {
+    CourseCode: req.body.CourseCode,
+    CourseDescription: req.body.CourseDescription,
+  }
 
-}
+  Activity.findByIdAndDelete(ActivityID,{$set: deletedActivity})
+  .then(() =>{
+    res.json({
+        message: "This activity is deleted successfully"
+    })
+  }) .catch(error => {
+      res.json({
+        message: "An error occured within the database"
+      })
+  })
+  
+
+  };
+
 
 module.exports = {HandleDeleteFileControl}
 

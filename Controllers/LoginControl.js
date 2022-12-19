@@ -1,24 +1,11 @@
 // Start of LoginControl.js
 
-
-const fsPromises = require ('fs').promises;
-const bcrypt = require('bcrypt');
+const Administrator = require('../Models/Administrator.js')
 const path = require ('path');
 const JWT = require ('jsonwebtoken');
+const {default: mongoose} = require('mongoose');
 
 
-
-
-// Create variable administrator DB
-const AdminDB ={
-    
-    //import file of user data. json
-    Admin: require ('../Models/Administrator.json'),
-
-    //set to call data from folder name 
-    setAdmin: function(data){this.Admin = data}
-
-}
 
 // create function that will handle login control w/ request and response
 
@@ -26,20 +13,11 @@ const AdminDB ={
 const HandleLoginControl  = async(req, res) =>{
 
     // import json data user and pass req. body
-    const {Username, Password} = req.body;
-
-    // verify input credentials of the admin/user to login
-    if (!Username || !Password) return res.status(400).json({message: "Invalid Username or Password."});
-
-
-    // create a function if Admin exist in the database
-    const foundAdmin = AdminDB.Admin.find((u) => u.Username == Username);
-
-
-    // if Admin = true but no authorization
+    const {Email, Password} = req.body;
+    if (!Email || !Password) return res.status(400).json({message: "Invalid Email or Password."});
+    
+    const foundAdmin = AdminDB.Admin.find((u) => u.Email == Email);
     if (!foundAdmin) return res.sendStatus(401);
-
-
 
     // if user = true and pass = true, give token to admin to allow authorization
     const match = bcrypt.compare(Password, foundAdmin.Password);

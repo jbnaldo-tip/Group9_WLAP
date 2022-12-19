@@ -1,5 +1,3 @@
-
-
 //Start import
 
 //call back variable set to express to import express
@@ -18,12 +16,12 @@ const {verifyJWT} = require('./Middleware/verifyJWT.js');
 const cookieParser = require('cookie-parser');
 
 //set variable of function of path importing "path functions"
-const path = require('path')
+const path = require('path');
+const { default: mongoose } = require('mongoose');
 
 //set variable of enviornment port to (PORT) and environment (PORT) set to localhost 5050
 const PORT = process.env.PORT || 5050;
 //End import
-
 
 
 
@@ -40,8 +38,6 @@ app.use(cookieParser());
 
 
 // end app
-
-
 
 
 // function app para ilagay ito sa URL"Directory", Calling Routes
@@ -69,20 +65,40 @@ app.get('/LoginPage', (req,res) => {
 
 
 
-//User calling function "app.listen" to listen and call out "PORT", (5050) and do the stuffs under 
-app.listen(PORT, () => {
-    console.log(`---------------------------------------`);
-    //TO DISPLAY IN TERMINAL WHAT PORT IT IS LISTENING TO.
-    console.log(`      GATHERING PORT! localhost:${PORT}`);
-    console.log('---------------------------------------\n');
-    // CAN BE FOR AESTHETIC PURPOSE OR BANNER, EITHER WAY YOU WANT
-    console.log('          GENERATING SERVER!          \n');
-    console.log('---------------------------------------');
-    //WILL DISPLAY THE LOCALHOST URL
-    console.log(`http://localhost:${PORT}/\t <== ROOT URL`);
-    console.log(`---------------------------------------`);
-})               
+const uri = 
+  'mongodb+srv://wlapadmin:wlapadmin@wlapcluster.qmoexas.mongodb.net/wlap_database?retryWrites=true&w=majority'
+async function connect () {
+    try {
+        await mongoose.connect(uri)
+        console.log ("Connected to MongoDB")
+    } catch (error) {
+      console.error(error); 
+    }
+}
 
+connect ();
+
+
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`)
+
+});
+
+
+
+//User calling function "app.listen" to listen and call out "PORT", (5050) and do the stuffs under 
+//app.listen(PORT, () => {
+//    console.log(`---------------------------------------`);
+//    //TO DISPLAY IN TERMINAL WHAT PORT IT IS LISTENING TO.
+//    console.log(`      GATHERING PORT! localhost:${PORT}`);
+//    console.log('---------------------------------------\n');
+//   // CAN BE FOR AESTHETIC PURPOSE OR BANNER, EITHER WAY YOU WANT
+//    console.log('          GENERATING SERVER!          \n');
+//    console.log('---------------------------------------');
+//    //WILL DISPLAY THE LOCALHOST URL
+//    console.log(`http://localhost:${PORT}/\t <== ROOT URL`);
+//    console.log(`---------------------------------------`);
+//})               
 
 
 
