@@ -4,18 +4,7 @@
 const JWT = require('jsonwebtoken');
 
 
-// set variable AdminDB as func var 
-const AdminDB = {
 
-    // same thing in RegisterController.js, import the user data.json
-    Admin: require ('../Models/Administrator.json'),
-
-    // same in the RegisterController.js
-    setAdmin: function(data){this.Admin = data}
-
-
-    
-}
 
 // create a function that will handle token request and response
 const HandleRefresherToken = (req,res ) => {
