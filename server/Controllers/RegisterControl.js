@@ -9,12 +9,15 @@
 const Administrator = require('../Models/Administrator.js')
 const path = require('path');
 const { default: mongoose } = require('mongoose');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 
 // Create HandleRegisterControl function variable for it to 
 // asynchronus e.g (req or request ; res or respond)
 
-const HandleRegisterControl  = async(req, res) => {
+const HandleRegisterControl  = async(req, res, next) => {
+    
 
     // import the json data user and password, req.body
 
@@ -40,19 +43,15 @@ const HandleRegisterControl  = async(req, res) => {
 
     try{
 
-    //const encryptPassword = await bcrypt.hash (Password, 12);
-
     await new Administrator ({
-        Email: Email,
-        Password: Password,
-        Surname: Surname,
-        Firstname: Firstname,
+        Email: req.body.Email,
+        Password: req.body.Password,
+        Surname: req.body.Surname,
+        Firstname: req.body.Firstname
 
         
     }).save(); 
 
-        // create a function that will generate a specific id and
-        // will encrypt/hash the password
     
         res.json({message: "Your Registration is successful! You're now registered!"});
     } catch(err) {

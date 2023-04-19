@@ -27,10 +27,4 @@ const GetAdminControl = async (req, res, next) => {
    };
 
 
-
-
-    
-
-    
-
 module.exports = {GetAdminControl}
